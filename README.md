@@ -1,4 +1,4 @@
-# lokalise-file-push
+# lokalise-pull-messages
 
 Lets you automatically pull messages from your lokalise.co project to your repository
 
@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - uses: igorDolzh/lokalise-file-push@v0.0.11
+      - uses: igorDolzh/lokalise-pull-messages@v0.0.1
         with:
           # Api token for the Lokalise account
           # with read/write access to the project
