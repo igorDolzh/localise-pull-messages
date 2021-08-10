@@ -1,13 +1,23 @@
 {
-  "name": "lokalise-file-push",
-  "version": "0.0.16",
+  "name": "lokalise-pull-messages",
+  "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "lib/main.js",
   "keywords": [],
   "author": "",
   "license": "UNLICENSED",
+  "scripts": {
+    "build": "tsc"
+  },
   "dependencies": {
-    "@actions/core": "^1.1.1",
-    "@lokalise/node-api": "5.0.0"
+    "@actions/core": "^1.4.0",
+    "@lokalise/node-api": "^6.3.0",
+    "adm-zip": "^0.5.5",
+    "https": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/adm-zip": "^0.4.34",
+    "@types/node": "^16.4.13",
+    "typescript": "^4.3.5"
   }
 }

@@ -1,4 +1,4 @@
-name: Lokalise File Push
+name: Lokalise Pull Messages
 description: "Pushes files to Lokalise"
 branding:
   icon: arrow-up-circle
@@ -13,11 +13,9 @@ inputs:
   file-path:
     description: The file path to find language files
     required: true
-  tag:
-    description: Tag for messages
-  locales:
-    description: List of locales should be pushed to localise, if not provided all locales from project will be fetched
+  download-options:
+    description: Object with other options for downloading
 
 runs:
   using: "node12"
-  main: "index.js"
+  main: "lib/main.js"
