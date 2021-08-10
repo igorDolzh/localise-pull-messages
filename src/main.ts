@@ -11,6 +11,7 @@ const filePath = ghCore.getInput("file-path");
 const downloadOptions = ghCore.getInput("download-options");
 
 async function run() {
+    console.log(apiKey, projectId, filePath, downloadOptions)
     const lokalise: LokaliseApi = new LokaliseApi({
         apiKey
     })
@@ -45,9 +46,9 @@ async function run() {
             })
         })
     }
-    let options
+    let options = {}
     try {
-        options = JSON.parse(downloadOptions)
+        options = downloadOptions ? JSON.parse(downloadOptions) : {}
     } catch {
         options = {}
     }
