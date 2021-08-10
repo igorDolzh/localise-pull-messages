@@ -69,11 +69,18 @@ async function run() {
 
     for (let i = 0; i < zipEntries.length; i++) {
         console.log(zipEntries[i].entryName)
-        fs.writeFile(zipEntries[i].entryName, zip.readAsText(zipEntries[i]), function(err) {
-            if(err) {
-                return console.log(err);
+
+        if (zipEntries[i].entryName.match(/[a-z]*\.[a-z]*$/)) {
+            console.log(zipEntries[i].entryName)
+            try {
+                fs.writeFileSync(zipEntries[i].entryName, zip.readAsText(zipEntries[i]))
+            } catch(err) {
+                console.log(`ERROR for ${zipEntries[i].entryName}`)
+                console.log(err);
             }
-        })
+            
+        }
+
     }
 }
 
