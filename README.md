@@ -1,11 +1,11 @@
 # lokalise-file-push
 
-Lets you automatically push files to your lokalise.co project.
+Lets you automatically pull messages from your lokalise.co project to your repository
 
 ## How to use
 
 ```yaml
-name: lokalise-file-push
+name: lokalise-pull-messages
 
 on:
   push:
@@ -33,9 +33,6 @@ jobs:
           # The relative file path where language files will be found
           file-path: src/locales/%LANG_ISO%/messages.po
 
-          # Tag
-          tag: tagName
-
-          # Locales
-          locales: '["en", "fr"]'
+          # Upload options for https://app.lokalise.com/api2docs/curl/#transition-download-files-post
+          upload-options: '{"export_empty_as": 'skip'}'
 ```
