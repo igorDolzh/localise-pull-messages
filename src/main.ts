@@ -46,6 +46,7 @@ async function run() {
             })
         })
     }
+    
     let options = {}
     try {
         options = downloadOptions ? JSON.parse(downloadOptions) : {}
@@ -73,6 +74,7 @@ async function run() {
         if (zipEntries[i].entryName.match(/[a-z]*\.[a-z]*$/)) {
             console.log(zipEntries[i].entryName)
             try {
+                fs.closeSync(fs.openSync(zipEntries[i].entryName, 'w'));
                 fs.writeFileSync(zipEntries[i].entryName, zip.readAsText(zipEntries[i]))
             } catch(err) {
                 console.log(`ERROR for ${zipEntries[i].entryName}`)
