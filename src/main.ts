@@ -65,17 +65,14 @@ async function run() {
 
     const zip: AdmZip = await getZipFile(file.bundle_url)
     const zipEntries = zip.getEntries()
-    console.log(zipEntries)
 
     for (let i = 0; i < zipEntries.length; i++) {
-        if (zipEntries[i].entryName.match(/.json/)) {
-            console.log(zipEntries[i].entryName)
-            fs.writeFile(zipEntries[i].entryName, zip.readAsText(zipEntries[i]), function(err) {
-                if(err) {
-                    return console.log(err);
-                }
-            })
-        }
+        console.log(zipEntries[i].entryName)
+        fs.writeFile(zipEntries[i].entryName, zip.readAsText(zipEntries[i]), function(err) {
+            if(err) {
+                return console.log(err);
+            }
+        })
     }
 }
 
