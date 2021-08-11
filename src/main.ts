@@ -2,6 +2,7 @@ import {LokaliseApi, DownloadFileParams, Keyable} from '@lokalise/node-api'
 import AdmZip from 'adm-zip'
 import * as https from 'https'
 import * as fs from 'fs'
+import * as path from 'path'
 
 import * as ghCore from "@actions/core";
 
@@ -46,6 +47,14 @@ async function run() {
             })
         })
     }
+
+    const writeFileRecursive = (file: string, data: string) => {
+        const dirname = path.dirname(file);
+        if (!fs.existsSync(dirname)) {
+          fs.mkdirSync(dirname, { recursive: true });
+        }
+        fs.writeFileSync(file, data);
+      };
     
     let options = {}
     try {
@@ -74,8 +83,7 @@ async function run() {
         if (zipEntries[i].entryName.match(/[a-z]*\.[a-z]*$/)) {
             console.log(zipEntries[i].entryName)
             try {
-                fs.closeSync(fs.openSync(zipEntries[i].entryName, 'w'));
-                fs.writeFileSync(zipEntries[i].entryName, zip.readAsText(zipEntries[i]))
+                writeFileRecursive(zipEntries[i].entryName, zip.readAsText(zipEntries[i]))
             } catch(err) {
                 console.log(`ERROR for ${zipEntries[i].entryName}`)
                 console.log(err);
